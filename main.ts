@@ -29,6 +29,9 @@ const LINE =
 if (LINE.length < 1 || LINE.length > 200 || LINE.trim().length === 0) {
   throw new Error(`line fails the 1-200 character gate: ${LINE.length} chars`);
 }
+if (LINE.includes("\n") || LINE.includes("\r")) {
+  throw new Error("line must be a single line with no line breaks");
+}
 if ((LINE.match(/\./g) ?? []).length !== 1 || !LINE.endsWith(".")) {
   throw new Error("line must be exactly one sentence ending with a period");
 }
